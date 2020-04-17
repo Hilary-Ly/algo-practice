@@ -18,7 +18,7 @@ function twoNumberSum(array, targetSum) {
 
 // refactored single loop - using 'for of' and 'if in'
 function twoNumberSum(array, targetSum) {
-   const nums = {};
+   const nums = {}; // hash table cuts down runtime
    for (const num of array) {
       const neededForSum = targetSum - num;
       if (neededForSum in nums) {
