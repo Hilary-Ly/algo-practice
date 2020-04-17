@@ -61,8 +61,7 @@ function smallestDifference(arrayOne, arrayTwo) {
       } else if (numOne > numTwo) {
          currentDiff = numOne - numTwo;
          pointerTwo++;
-      } else {
-         // diff is 0
+      } else { // diff is 0
          return [numOne, numTwo];
       }
       if (currentDiff < smallestDiff) {
