@@ -16,9 +16,9 @@ function twoNumberSum(array, targetSum) {
    return addToSum;
 }
 
-// refactored single loop - using 'for of' and 'if in'
+// hash table - using 'for of' and 'if in'
 function twoNumberSum(array, targetSum) {
-   const nums = {}; // hash table cuts down runtime
+   const nums = {}; // hash table cuts down runtime to O(n)
    for (const num of array) {
       const neededForSum = targetSum - num;
       if (neededForSum in nums) {
@@ -28,6 +28,17 @@ function twoNumberSum(array, targetSum) {
       }
    }
    return [];
+}
+
+// hash table - slightly diff structure
+function targetSum(arr, target) {
+  let nums = {}
+  for (let i = 0; i < arr.length; i++) {
+    const neededForSum = target - arr[i]
+    nums[arr[i]] = neededForSum
+    if (neededForSum in nums) return [arr[i], target - arr[i]]
+  }
+  return []
 }
 
 // pointers method
