@@ -4,7 +4,8 @@ function patternMatcher(pattern, string) {
 	const didSwitch = newPattern[0] !== pattern[0]
 	const counts = {x:0, y:0}
 	const firstY = getCountsAndFirstYpos(newPattern, counts) 
-	// counts is changed and doesn't have to be returned
+    // counts is changed and doesn't have to be returned
+    // it is "passed by reference", bc it is an object (vs. primitive) data type
 	console.log(counts)
 	if (counts['y']) {
 		for (let lenX = 1; lenX < string.length; lenX++) {
