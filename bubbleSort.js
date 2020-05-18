@@ -1,15 +1,15 @@
 function bubbleSort(array) {
 	let isSorted = false
 	let counter = 0
-  for (while !isSorted) {
-		isSorted = true
+  while (!isSorted) {
+		isSorted = true // tentatively assume true until we cannot
 		for (let i = 0; i < array.length - 1 - counter; i++) {
 			if (array[i] > array[i+1]) {
 				swap(array, i, i+1)
 				isSorted = false
 			}
 		}
-		counter++
+		counter++ // after each round of the inner loop
 	}
 	return array
 }
