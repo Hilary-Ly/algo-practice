@@ -8,10 +8,11 @@ class BinaryTree {
     }
   }
   
-  function branchSums(root, array = [], sum = 0) {
-      if (!root) return array // base case for the whole tree
-      if (!root.left && !root.right) array.push(sum + root.value) // base case for a single branch
-      branchSums(root.left, array, sum + root.value) // recurse until we're at a leaf - within a branch, only change is sum
-      branchSums(root.right, array, sum + root.value) // within the tree, change is in the array
-      return array
-  } // O(n) time, O(n) space due to recursion
+// only one sol - uses recursion
+function branchSums(root, array = [], sum = 0) {
+	if (!root) return array // base case for the whole tree
+	if (!root.left && !root.right) array.push(sum + root.value) // base case for a single branch
+	branchSums(root.left, array, sum + root.value) // recurse until we're at a leaf - within a branch, only change is sum
+	branchSums(root.right, array, sum + root.value) // within the tree, change is in the array
+	return array
+} // O(n) time, O(n) space due to recursion

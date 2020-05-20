@@ -54,7 +54,7 @@ function sameBsts(arrayOne, arrayTwo, rootOne = 0, rootTwo = 0, min = -Infinity,
     if (arrayOne[rootOne] !== arrayTwo[rootTwo]) return false
       if (rootOne === -1 || rootTwo === -1) return rootOne === rootTwo // no root / nothing left in subarray
       
-      const leftRootOne = getLeft(arrayOne, rootOne, min) // equivalent to the 4 arrays in sol 1
+      const leftRootOne = getLeft(arrayOne, rootOne, min) // like the 4 arrays in sol 1 but more space efficient
       const rightRootOne = getRight(arrayOne, rootOne, max)
       const leftRootTwo = getLeft(arrayTwo, rootTwo, min)
       const rightRootTwo = getRight(arrayTwo, rootTwo, max)
