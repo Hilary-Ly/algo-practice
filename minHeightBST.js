@@ -42,34 +42,37 @@ function minHeightBst(array, bst = null, start = 0, end = array.length - 1) {
 
 
 
-// recursive, with some iterative elements rather than using insert method
+// recursive, manually inserting rather than using insert method
 function minHeightBst(array, bst = null, start = 0, end = array.length - 1) {
     if (start > end) return
-      const mid = Math.floor((start + end) / 2) 
+      const mid = Math.floor((start + end) / 2) // mids of each subsection are parents
       const newNode = new BST(array[mid])
-      if (!bst) bst = newNode
+      
+      if (!bst) bst = newNode // accounts for case that we haven't created root node yet
       else {
-          if (array[mid] < bst.value) { // this part is more iterative
-              bst.left = newNode
+          if (array[mid] < bst.value) { // manual insert
+              bst.left = newNode // the mid of the left side is the direct child of the root
               bst = bst.left
           } else {
               bst.right = newNode
               bst = bst.right
           }
       }
-      minHeightBst(array, bst, start, mid - 1)
-      minHeightBst(array, bst, mid + 1, end)
+      
+      minHeightBst(array, bst, start, mid - 1) // call recursively to keep splitting array further and further
+      minHeightBst(array, bst, mid + 1, end) // pass in bst (parent) because each call is relative to the bst/branch we are on
       return bst
-  } // O(n) time, O(n) space
+  } // O(n) time, O(n) space - must run through all nodes once
 
 
 
 
-  // recursive, no bst parameter
+// recursive - cleanest! (no bst parent param)
 function minHeightBst(array, start = 0, end = array.length - 1) {
-    if (start > end) return null
+    if (start > end) return null // don't need to set bst parent down, but now need null if this happens
       const mid = Math.floor((start + end) / 2)
       const bst = new BST(array[mid])
+      
       bst.left = minHeightBst(array, start, mid - 1)
       bst.right = minHeightBst(array, mid + 1, end)
       return bst
