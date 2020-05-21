@@ -9,10 +9,10 @@ class BST {
 
 // recursive sol, more intuitive one
 function validateBst(tree, min = -Infinity, max = Infinity) {
-	if (!tree) return true
-  if (tree.value < min || tree.value >= max) return false
+    if (!tree) return true 
+    // base case, ie, if tree.left/tree.right is falsy on the recursive call
+    if (tree.value < min || tree.value >= max) return false
 	return validateBst(tree.left, min, tree.value) && validateBst(tree.right, tree.value, max)
-	return true
 } // O(n) time, O(d) space where n = number of nodes, d = depth/height
 // O(d) because function is called recursively once per level for both left and right
 
