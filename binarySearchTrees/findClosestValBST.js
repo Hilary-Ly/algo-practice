@@ -27,7 +27,7 @@ function findClosestValueInBst(tree, target, closest = Infinity) {
       if (localDiff < closestDiff) closest = tree.value
       
       if (target < tree.value) return findClosestValueInBst(tree.left, target, closest)
-      if (target > tree.value) return findClosestValueInBst(tree.right, target, closest)
+      else if (target > tree.value) return findClosestValueInBst(tree.right, target, closest)
       else return closest
   } // O(log n) time + O(log n) space on avg
   // O(n) time + O(n) space at worst
