@@ -47,7 +47,7 @@ function multiStringSearch(bigString, smallStrings) {
           findSmallStringsIn(bigString, i, trie, containedStrings)
       }
       return smallStrings.map(string => string in containedStrings)
-  } 
+  } // O(ns + bs) time, O(ns) space
   // create an object literal that contains all the words in the big string
   // using the logic that the endSymbol = string itself from the trie class
   function findSmallStringsIn(string, startIdx, trie, containedStrings) {
