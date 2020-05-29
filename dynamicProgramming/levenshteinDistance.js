@@ -40,7 +40,7 @@ function levenshteinDistance(str1, str2) {
     big = str1;
   }
 
-  const oddEdits = new Array(small.length + 1);
+  const oddEdits = new Array(small.length + 1)
   const evenEdits = [];
   for (let j = 0; j < small.length + 1; j++) {
     evenEdits.push(j);
