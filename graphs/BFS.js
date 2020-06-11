@@ -9,13 +9,14 @@
 	queue = [C, D, E, F]
     */
     
-    breadthFirstSearch(array) {
-		let queue = [this]
-		while (queue.length) {
-			const node = queue.shift() 
-			array.push(node.name) // O(v) time
-			if (node.children) queue.push(...node.children) // O(e) time
-		}
-		return array
-	} // O(v + e) time, O(v) space
+function breadthFirstSearch(array) {
+    let queue = [this]
+    while (queue.length) {
+        const node = queue.shift() 
+        array.push(node.name) // O(v) time
+        if (node.children) queue.push(...node.children) // O(e) time
+    }
+    return array
+} 
+    // O(v + e) time, O(v) space
 	// O(e) due to ...node.children is implicity a loop, O(v) as we run through all nodes
