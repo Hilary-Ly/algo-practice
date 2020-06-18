@@ -17,7 +17,7 @@ function removeKthNodeFromEnd(head, k) {
     head.next = head.next.next;
     return;
   }
-  while (fast.next) { // traverse until fast reaches the LAST element (1 away from END)
+  while (fast.next) { // traverse until fast reaches the LAST element (1 before the END)
     fast = fast.next;
     slow = slow.next;
   }
@@ -28,7 +28,7 @@ function removeKthNodeFromEnd(head, k) {
   - create fast and slow pointers, create distance of k between the two pointers using a loop
   - if k is the length of the linked list, then fast is pointing to null:
     - then no need for slow pointer, replace head with head's next node and return
-  - otherwise, traverse both fast and slow until fast reaches the last item, so fast is 1 away from the end and slow is 1 away from the kth element from the end
+  - otherwise, traverse both fast and slow until fast reaches the last item, so fast is 1 item before the end and slow is 1 before the kth element from the end
  - skip over slow.next by setting slow's next pointer to slow.next.next
 */
 
