@@ -41,6 +41,19 @@ function targetSum(arr, target) {
   return []
 }
 
+// hash table - allows for duplicates in array
+function getIndicesOfItemWeights(arr, limit) {
+   const hash = {}
+   for (let i = 0; i < arr.length; i++) {
+     const weight = arr[i]
+     const diff = limit - weight
+     
+     if (diff in hash && hash[diff] !== i) return [i, hash[diff]]
+     else hash[weight] = i 
+   }
+   return []
+ }
+
 // pointers method
 function twoNumberSum(array, targetSum) {
    array.sort((a, b) => a - b); // compare function for sorting

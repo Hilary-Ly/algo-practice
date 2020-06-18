@@ -14,7 +14,7 @@ function createAirportGraph(airports, routes) {
     airportGraph[airport].connections.push(connection);
   }
   return airportGraph;
-}
+} // O(airports + routes) time, O(airports + routes) space
 
 class AirportNode {
   constructor(airport) {
