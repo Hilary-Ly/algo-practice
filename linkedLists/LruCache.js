@@ -98,3 +98,108 @@ class Node {
     this.next = null;
   } // O(1) time, O(1) space
 }
+
+
+
+
+
+// same sol - worked out without looking at solution
+
+// Do not edit the class below except for the insertKeyValuePair,
+// getValueFromKey, and getMostRecentKey methods. Feel free
+// to add new properties and methods to the class.
+class LRUCache {
+    constructor(maxSize) {
+      this.maxSize = maxSize || 1;
+          this.size = 0
+          this.cache = {}
+          this.order = new DoublyLinkedList
+    }
+  
+    insertKeyValuePair(key, value) {
+      // if key already in cache - replace the value in keyvalue pair
+          if (key in this.cache) {
+              this.replace(key, value)
+          } else {
+              // if key not in cache - add to cache
+              // and size = maxSize - evict tail
+              if (this.size === this.maxSize) this.evict()
+              // and size < maxSize - increase size
+              else this.size++
+              this.cache[key] = new Node(key, value)
+          }
+          // set this.cache[key] as new head in linkedlist
+          this.order.setHead(this.cache[key])
+    }
+      
+      replace(key, value) {
+          this.cache[key].value = value
+      }
+      
+      evict() {
+          const oldTail = this.order.tail.key
+          this.order.removeTail()
+          delete this.cache[oldTail]
+      }
+  
+    getValueFromKey(key) {
+      if (!(key in this.cache)) return null
+          this.order.setHead(this.cache[key]) // set new head
+          return this.cache[key].value
+    }
+  
+    getMostRecentKey() {
+      return this.order.head.key
+    }
+  }
+  
+  class DoublyLinkedList {
+      constructor() {
+          this.head = null
+          this.tail = null
+      }
+      
+      setHead(node) {
+          if (node === this.head) return
+          else if (!this.head) {
+              this.head = node
+              this.tail = node
+          } else {
+              if (node === this.tail) this.removeTail()
+              
+              node.removeBindings()
+              const oldHead = this.head
+              this.head = node
+              this.head.next = oldHead
+              oldHead.prev = node
+          }
+      }
+      
+      removeTail() {
+          if (!this.tail) return
+          if (this.head === this.tail) {
+              this.head = null
+              this.tail = null
+          } else {
+              const newTail = this.tail.prev
+              newTail.next = null
+              this.tail = newTail
+          }
+      }
+  }
+  
+  class Node {
+      constructor(key, value) {
+          this.key = key
+          this.value = value
+          this.next = null
+          this.prev = null
+      }
+      
+      removeBindings() {
+          if (this.prev) this.prev.next = this.next
+          if (this.next) this.next.prev = this.prev
+          this.prev = null
+          this.next = null
+      }
+  }
